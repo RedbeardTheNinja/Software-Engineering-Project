@@ -16,7 +16,7 @@ class Boot {
     LiftRules.addToPackages("code")
 
     // build sitemap
-    val entries = List(Menu("Home") / "index") :::
+    val entries = List(Menu("Home") / "index", Menu("News and Jobs") / "NewsJobs", Menu("Messages and People") / "MessagesPeople") :::
                   Nil
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){
