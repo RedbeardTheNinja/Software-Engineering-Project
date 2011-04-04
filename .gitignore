@@ -4,3 +4,4 @@ target/
 lib/
 project/*.iml
 project/boot/
+lib_managed/
