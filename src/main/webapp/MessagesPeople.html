@@ -1,15 +1,11 @@
 <lift:surround with="tabbed">
 
     <lift:bind-at name="left tab">
-        <lift:MessagesTab >
-            <STRONG>Hi there</STRONG>
-        </lift:MessagesTab>
+            <lift:embed what="/templates-hidden/MessagesTab"></lift:embed>
     </lift:bind-at>
 
     <lift:bind-at name="right tab">
-        <lift:PeopleTab >
-            <STRONG>Hi there</STRONG>
-        </lift:PeopleTab>
+            <lift:embed what="/templates-hidden/PeopleTab"></lift:embed>
     </lift:bind-at>
 
 </lift:surround>

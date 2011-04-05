@@ -8,5 +8,5 @@ import net.liftweb._
 import util.Helpers._
 
 class PeopleTab {
-	def render = "*" #> <strong>hello world!</strong>
+	def render = "*" #> <strong>this is the people tab</strong>
 }
