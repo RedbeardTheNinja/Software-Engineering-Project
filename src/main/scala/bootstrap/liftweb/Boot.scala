@@ -16,7 +16,7 @@ class Boot {
 
     object DBVendor extends StandardDBVendor(
       Props.get("db.class").openOr("org.h2.Driver"),
-      Props.get("db.url").openOr("jdbc:h2:database/chapter_eleven"),
+      Props.get("db.url").openOr("jdbc:h2:database/our_database"),
       Props.get("db.user"),
       Props.get("db.pass"))
 
