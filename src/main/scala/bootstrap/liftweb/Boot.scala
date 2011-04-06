@@ -30,14 +30,14 @@ class Boot {
     }
 
     if (Props.devMode)
-    Schemifier.schemify(true, Schemifier.infoF _,
-      User)
+    Schemifier.schemify(true, Schemifier.infoF _, User)
 
     // build sitemap
     val entries = List(Menu("Home") / "index",
                        Menu("News and Jobs") / "NewsJobs",
                        Menu("Messages and People") / "MessagesPeople",
-                       Menu("Profile temp link") / "profile" / "profile" >> Hidden) :::
+                       Menu("Profile temp link") / "profile" / "profile" >> Hidden,
+                       Menu("Even or Job Listing") / "Listing" >> Hidden) :::
                        User.menus
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){
