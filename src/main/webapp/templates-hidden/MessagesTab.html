@@ -1,7 +1,14 @@
 <lift:surround with="Tab" at="content">
 
-    <lift:MessagesTab>
-        <STRONG>Hi there</STRONG>
-    </lift:MessagesTab>
+    <ul>
+        <lift:MessagesTab.show>
+            <li>
+                <STRONG>The subject goes here</STRONG>
+                <i>
+                    the message goes here
+                </i>
+            </li>
+        </lift:MessagesTab.show>
+    </ul>
 
 </lift:surround>

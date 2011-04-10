@@ -49,6 +49,33 @@
 	background-color: #eee;
 }
 
+.menu {
+	width: 100%;
+	height: 54px;
+	margin: 0px auto;
+}
+
+.menu ul {
+	margin: 0px;
+	padding: 12px 0px 0px 0px;
+	list-style: none;
+	text-align: center;
+}
+
+.menu li {
+	display: inline;
+	padding: 0px;
+	background: none;
+}
+
+.menu a {
+	padding: 0 18px 0px 18px;
+}
+
+.menu ul li a:hover {
+	background-color: #eee;
+}
+
 
   /* ]]> */
     </style>
@@ -63,7 +90,7 @@
 
       <hr/>
 
-      <div class="column span-5 colborder sidebar">
+      <div class="menu">
           <hr class="space"/>
           <lift:Menu.builder>
               <div>
@@ -73,12 +100,14 @@
           </lift:Menu.builder>
       </div>
 
-      <div class="column span-18 last">
+      <hr/>
+
+      <div class="column span-24 last">
           <lift:bind name="content"></lift:bind>
       </div>
 
       <hr/>
-      <div class="column span-23 last" style="text-align: center">
+      <div class="column span-24 last" style="text-align: center">
           <h4 class="alt">
               <a href="http://www.liftweb.net"><i>Lift</i></a>
               is Copyright 2007-2010 WorldWide Conferencing, LLC. Distributed under an Apache 2.0 License.</h4>
