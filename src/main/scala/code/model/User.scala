@@ -13,6 +13,14 @@ import common._
 class User extends MegaProtoUser[User] with OneToMany[Long, User] {
   def getSingleton = User // what's the "meta" server
 
+
+  object userName extends MappedString(this, 40) {
+    override def validations = {
+      valUnique("Username already taken") _ ::
+      super.validations
+    }
+  }
+
   // define an additional field for a personal essay
   object summary extends MappedTextarea(this, 2048) {
     override def textareaRows  = 10
@@ -33,9 +41,9 @@ object User extends User with MetaMegaProtoUser[User] {
   override def screenWrap = Full(<lift:surround with="default" at="content">
              <lift:bind /></lift:surround>)
   // define the order fields will appear in forms and output
-  override def fieldOrder = id :: firstName :: lastName :: email :: locale :: timezone :: password :: summary :: Nil
+  override def fieldOrder = id :: userName :: firstName :: lastName :: email :: locale :: timezone :: password :: summary :: Nil
 
-  override def signupFields = firstName :: lastName :: email :: password :: Nil
+  override def signupFields = firstName :: lastName :: userName :: email :: password :: superUser :: Nil
 
   override def editFields = firstName :: lastName :: password :: summary :: Nil
 

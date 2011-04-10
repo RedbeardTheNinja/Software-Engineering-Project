@@ -5,21 +5,19 @@ package code.snippet
 
 import xml.{NodeSeq}
 import net.liftweb._
-import http.DispatchSnippet
+import http.{SHtml, S, DispatchSnippet}
 import util.Helpers._
 import code.model.{Message, User}
 
 class MessagesTab extends DispatchSnippet{
   def dispatch = {
-    case "show" => if(User.loggedIn_?) show _
+    case "show" if(User.loggedIn_?) => show 
   }
-
-	def render = "*" #> <strong>this is the messages tab</strong>
 
   def show = {
     val my_messages : List[Message] = User.currentUser.map((u : User) => u.received_messages.all) openOr Nil
-    my_messages.flatMap((m : Message) => "STRONG *" #> m.subject &
-                                         "li *" #> m.text)
+    "li *" #> my_messages.map((m : Message) =>
+                                  "STRONG" #> m.subject & "i" #> m.text)
   }
 
 }
