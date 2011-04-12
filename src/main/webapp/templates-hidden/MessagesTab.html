@@ -1,7 +1,13 @@
 <lift:surround with="Tab" at="content">
 
     <form>
-        To : <input type="text">
+        <lift:MessagesTab.ShowSend>
+            To : <input type="text" name="To"/>
+            <br/>
+            Body:<textarea rows="10" cols="40" name="Body"></textarea>
+            <br/>
+            <input type="submit" value="Submit"/>
+        </lift:MessagesTab.ShowSend>
     </form>
 
     <ul>
