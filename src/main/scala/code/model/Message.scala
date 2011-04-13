@@ -17,10 +17,14 @@ class Message extends LongKeyedMapper[Message] with IdPK {
 
   def getSingleton = Message
 
-  object sent_date extends MappedDate(this)
+  object sent_date extends MappedDate(this) {
+    override def dbIncludeInForm_? = false
+  }
   object body extends MappedText(this)
   object subject extends MappedString(this,100)
-  object sender extends LongMappedMapper(this, User)
+  object sender extends LongMappedMapper(this, User) {
+    override def dbIncludeInForm_? = false
+  }
   object receiver extends LongMappedMapper(this, User) {
 
     override def asHtml = {
@@ -39,8 +43,10 @@ class Message extends LongKeyedMapper[Message] with IdPK {
   }
   object sender_deleted extends MappedBoolean(this) {
     override def defaultValue = false
+    override def dbIncludeInForm_? = false
   }
   object receiver_deleted extends MappedBoolean(this) {
+      override def dbIncludeInForm_? = false
       override def defaultValue = false
   }
 
