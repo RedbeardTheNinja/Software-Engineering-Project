@@ -1,10 +1,33 @@
 <lift:surround with="Tab" at="content">
+    <head>
+    </head>
+
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#ToggleForm").click(function(){
+                    $("#ComposeForm").toggle("normal");
+                    if($("ToggleForm").attr(value) = "Compose Message")
+                    {
+                        $("ToggleForm").attr(value,"Hide");
+                    }
+                    else
+                    {
+                        $("ToggleForm").attr(value,"Compose Message");
+                    }
+                });
+            });
+        </script>
 
     <form>
+        <input type="button" id="ToggleForm" value="Compose Message"/>
+    </form>
+
+    <form id="ComposeForm">
         <lift:MessagesTab.ShowSend>
             To : <input type="text" name="To"/>
             <br/>
-            Body:<textarea rows="10" cols="40" name="Body"></textarea>
+            Body:<textarea rows="20" cols="30" name="Body"></textarea>
             <br/>
             <input type="submit" value="Submit"/>
         </lift:MessagesTab.ShowSend>

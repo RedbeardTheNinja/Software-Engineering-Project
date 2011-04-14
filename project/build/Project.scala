@@ -19,5 +19,7 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) {
     "com.h2database" % "h2" % "1.3.146"
     ) ++ super.libraryDependencies
 
+  val postgresql = "postgresql" % "postgresql" % "9.0-801.jdbc4" % "compile"
+
   val mapper = "net.liftweb" %% "lift-mapper" % liftVersion % "compile"
 }
