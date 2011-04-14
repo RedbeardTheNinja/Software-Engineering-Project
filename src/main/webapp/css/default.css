@@ -82,7 +82,6 @@
 }
 
 .message ul li {
-    border:2px solid;
+    border:1px solid;
     border-radius:25px;
-    padding-top:20px;
 }

@@ -25,7 +25,7 @@ class MessagesTab extends DispatchSnippet{
 
   def show = {
     val my_messages : List[Message] = User.currentUser.map((u : User) => u.received_messages.all) openOr Nil
-    "li *" #> my_messages.map((m : Message) => "STRONG *" #> m.subject & "p *" #> m.body.asHtml)
+    "li *" #> my_messages.map((m : Message) => "h6 *" #> m.subject & "p *" #> m.body.is)
   }
 
 }
