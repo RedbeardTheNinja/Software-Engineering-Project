@@ -8,8 +8,8 @@ import sitemap.{SiteMap, Menu}
 import net.liftweb.sitemap.Loc._
 import net.liftweb.mapper.{DB,Schemifier,DefaultConnectionIdentifier,StandardDBVendor,MapperRules}
 import util.{Props, NamedPF}
-import code.model.{Message, User}
 import widgets.autocomplete.AutoComplete
+import code.model.{NewsListing, Message, User}
 
 class Boot {
   def boot {
@@ -33,7 +33,7 @@ class Boot {
     }
 
     if (Props.devMode)
-    Schemifier.schemify(true, Schemifier.infoF _, User, Message)
+    Schemifier.schemify(true, Schemifier.infoF _, User, Message, NewsListing)
 
     // build sitemap
     val entries = List(Menu("Home") / "index",
