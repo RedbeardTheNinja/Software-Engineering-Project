@@ -1,0 +1,88 @@
+﻿.edit_error_class {
+  display: block;
+  color: red;
+}
+
+
+.sidebar ul {
+	margin:0;
+	padding:0;
+	border-bottom:1px solid #ccc;
+}	 
+
+.sidebar ul li {
+	margin:0;
+	padding:0;
+	list-style:none;
+	border:1px solid #ccc;
+	border-bottom:none;
+}
+
+.sidebar ul li a {
+	display:block;
+	padding:3px;
+	text-indent:30px;
+	text-decoration:none;
+}
+
+.sidebar ul li span {
+	display:block;
+	padding:3px;
+	text-indent:30px;
+	text-decoration:none;
+}
+
+.sidebar ul li a:hover {
+	background-color: #eee;
+}
+
+/*MENU SECTION*/
+
+.menu {
+	width: 100%;
+	height: 54px;
+	margin: 0px auto;
+}
+
+.menu ul {
+	margin: 0px;
+	padding: 12px 0px 0px 0px;
+	list-style: none;
+	text-align: center;
+}
+
+.menu li {
+	display: inline;
+	padding: 0px;
+	background: none;
+}
+
+.menu a {
+	padding: 0 18px 0px 18px;
+}
+
+.menu ul li a:hover {
+	background-color: #eee;
+}
+
+/*END MENU SECTION*/
+
+/*MESSAGE SECTION*/
+
+.message {
+    border:2px solid;
+    border-radius:25px;
+}
+
+.message ul {
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+    margin: 0px;
+}
+
+.message ul li {
+    border:2px solid;
+    border-radius:25px;
+    padding-top:20px;
+}

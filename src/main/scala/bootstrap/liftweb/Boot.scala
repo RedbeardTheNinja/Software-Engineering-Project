@@ -9,9 +9,12 @@ import net.liftweb.sitemap.Loc._
 import net.liftweb.mapper.{DB,Schemifier,DefaultConnectionIdentifier,StandardDBVendor,MapperRules}
 import util.{Props, NamedPF}
 import code.model.{Message, User}
+import widgets.autocomplete.AutoComplete
 
 class Boot {
   def boot {
+
+    AutoComplete.init
 
 
     object DBVendor extends StandardDBVendor(

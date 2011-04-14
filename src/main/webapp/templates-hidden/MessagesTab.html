@@ -1,13 +1,10 @@
 <lift:surround with="Tab" at="content">
-    <head>
-    </head>
-
 
         <script type="text/javascript">
             $(document).ready(function(){
                 $("#ToggleForm").click(function(){
                     $("#ComposeForm").toggle("normal");
-                    if($("ToggleForm").attr(value) = "Compose Message")
+                    if($("ToggleForm").attr(value) == "Compose Message")
                     {
                         $("ToggleForm").attr(value,"Hide");
                     }
@@ -18,30 +15,33 @@
                 });
             });
         </script>
+    <div class="message">
 
-    <form>
-        <input type="button" id="ToggleForm" value="Compose Message"/>
-    </form>
+        <form>
+            <input type="button" id="ToggleForm" value="Compose Message"/>
+        </form>
 
-    <form id="ComposeForm">
-        <lift:MessagesTab.ShowSend>
-            To : <input type="text" name="To"/>
-            <br/>
-            Body:<textarea rows="20" cols="30" name="Body"></textarea>
-            <br/>
-            <input type="submit" value="Submit"/>
-        </lift:MessagesTab.ShowSend>
-    </form>
+        <form id="ComposeForm" style="display:none;">
+            <lift:MessagesTab.ShowSend>
+                To : <input type="text" name="To"/>
+                <br/>
+                Body:<textarea rows="20" cols="30" name="Body"></textarea>
+                <br/>
+                <input type="submit" value="Submit"/>
+            </lift:MessagesTab.ShowSend>
+        </form>
 
-    <ul>
-        <lift:MessagesTab.show>
-            <li>
-                <STRONG>The subject goes here</STRONG>
-                <p>
-                    <i>the message goes here</i>
-                </p>
-            </li>
-        </lift:MessagesTab.show>
-    </ul>
+        <ul>
+            <lift:MessagesTab.show>
+                <li>
+                    <STRONG>The subject goes here</STRONG>
+
+                    <p>
+                        <i>the message goes here</i>
+                    </p>
+                </li>
+            </lift:MessagesTab.show>
+        </ul>
+    </div>
 
 </lift:surround>

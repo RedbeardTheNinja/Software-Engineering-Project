@@ -38,6 +38,7 @@ class Message extends LongKeyedMapper[Message] with IdPK {
     }
 
     override def _toForm = {
+      
       Full(SHtml.text("",(s : String) => this.set(User.find(By(User.userName,s)).open_!.id.is)))
     }
 
@@ -47,6 +48,10 @@ class Message extends LongKeyedMapper[Message] with IdPK {
     override def dbIncludeInForm_? = false
   }
   object receiver_deleted extends MappedBoolean(this) {
+      override def dbIncludeInForm_? = false
+      override def defaultValue = false
+  }
+  object is_read extends MappedBoolean(this) {
       override def dbIncludeInForm_? = false
       override def defaultValue = false
   }
