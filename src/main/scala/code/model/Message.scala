@@ -66,6 +66,7 @@ object Message extends Message with LongKeyedMetaMapper[Message] with CRUDify[Lo
   override def calcPrefix = List("admin",_dbTableNameLC)
   override def showAllMenuLocParams = LocGroup("admin") :: Nil
   override def createMenuLocParams = LocGroup("admin") :: Nil
+  //override def fieldOrder = receiver :: subject :: body :: sender :: receiver_deleted :: sender_deleted :: sent_date :: is_read :: Nil
 
 
 }

@@ -13,6 +13,10 @@ import common._
 class User extends MegaProtoUser[User] with OneToMany[Long, User] {
   def getSingleton = User // what's the "meta" server
 
+  object Status extends Enumeration {
+    type Status = Value
+    val FirstYear, SecondYear, ThirdYear, FourthYear, FifthYear, Alumni, Professor = Value
+  }
 
   object userName extends MappedString(this, 40) {
     override def validations = {
@@ -27,7 +31,7 @@ class User extends MegaProtoUser[User] with OneToMany[Long, User] {
     override def textareaCols = 50
     override def displayName = "Personal Essay"
   }
-
+  object currentStatus extends MappedEnum(this, Status)
   object sent_messages extends MappedOneToMany(Message, Message.sender, OrderBy(Message.sent_date, Ascending))
   object received_messages extends MappedOneToMany(Message, Message.receiver, OrderBy(Message.sent_date, Ascending))
 
@@ -41,7 +45,7 @@ object User extends User with MetaMegaProtoUser[User] {
   override def screenWrap = Full(<lift:surround with="default" at="content">
              <lift:bind /></lift:surround>)
   // define the order fields will appear in forms and output
-  override def fieldOrder = id :: userName :: firstName :: lastName :: email :: locale :: timezone :: password :: summary :: Nil
+  override def fieldOrder = userName :: firstName :: lastName :: email :: locale :: timezone :: password :: summary :: Nil
 
   override def signupFields = firstName :: lastName :: userName :: email :: password :: superUser :: Nil
 
