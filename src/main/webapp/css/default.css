@@ -67,21 +67,24 @@
 
 /*END MENU SECTION*/
 
-/*MESSAGE SECTION*/
+/*TAB SECTION*/
 
-.message {
+.tab {
     border:2px solid;
     border-radius:25px;
+    border-style:inset;
 }
 
-.message ul {
+.tab ul {
     list-style: none;
     text-align: center;
     padding: 10px;
     margin: 0px;
 }
 
-.message ul li {
+.tab ul li {
     border:1px solid;
-    border-radius:25px;
+    border-radius:5px;
 }
+
+/*END TAB SECTION*/

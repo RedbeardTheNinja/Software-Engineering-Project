@@ -1,47 +1,45 @@
 <lift:surround with="Tab" at="content">
 
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("#ToggleForm").click(function(){
-                    $("#ComposeForm").toggle("normal");
-                    if($("ToggleForm").attr(value) == "Compose Message")
-                    {
-                        $("ToggleForm").attr(value,"Hide");
-                    }
-                    else
-                    {
-                        $("ToggleForm").attr(value,"Compose Message");
-                    }
-                });
-            });
-        </script>
-    <div class="message">
+    <script type="text/javascript">
+        $(document).ready(function(){
+        $("#ToggleForm").click(function(){
+        $("#ComposeForm").toggle("normal");
+        if($("ToggleForm").attr(value) == "Compose Message")
+        {
+        $("ToggleForm").attr(value,"Hide");
+        }
+        else
+        {
+        $("ToggleForm").attr(value,"Compose Message");
+        }
+        });
+        });
+    </script>
 
-        <form>
-            <input type="button" id="ToggleForm" value="Compose Message" style="position:relative;left:20px;"/>
-        </form>
+    <form>
+        <input type="button" id="ToggleForm" value="Compose Message" style="position:relative;left:20px;"/>
+    </form>
 
-        <form id="ComposeForm" style="display:none;">
-            <lift:MessagesTab.ShowSend>
-                To : <input type="text" name="To"/>
-                <br/>
-                Body:<textarea rows="20" cols="30" name="Body"></textarea>
-                <br/>
-                <input type="submit" value="Submit"/>
-            </lift:MessagesTab.ShowSend>
-        </form>
+    <form id="ComposeForm" style="display:none;">
+        <lift:MessagesTab.ShowSend>
+            To : <input type="text" name="To"/>
+            <br/>
+            Body:<textarea rows="20" cols="30" name="Body"></textarea>
+            <br/>
+            <input type="submit" value="Submit"/>
+        </lift:MessagesTab.ShowSend>
+    </form>
 
-        <ul>
-            <lift:MessagesTab.show>
-                <li>
-                    <h6>The subject goes here</h6>
+    <ul>
+        <lift:MessagesTab.show>
+            <li>
+                <h6>The subject goes here</h6>
 
-                    <p>
-                        the message goes here
-                    </p>
-                </li>
-            </lift:MessagesTab.show>
-        </ul>
-    </div>
+                <p>
+                    the message goes here
+                </p>
+            </li>
+        </lift:MessagesTab.show>
+    </ul>
 
 </lift:surround>
