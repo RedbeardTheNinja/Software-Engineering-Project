@@ -14,8 +14,8 @@ import code.model.{Message, User}
 
 class MessagesTab extends DispatchSnippet{
   def dispatch = {
-    case "show" if(User.loggedIn_?) => show
-    case "ShowSend" if(User.loggedIn_?) => sendForm _
+    case "show" => show
+    case "ShowSend" => sendForm _
   }
 
   def sendForm(xhtml : NodeSeq) : NodeSeq = {

@@ -4,6 +4,7 @@ package bootstrap.liftweb
 
 import net.liftweb._
 import http.{LiftRules, NotFoundAsTemplate, ParsePath}
+import sitemap.Menu.Menuable._
 import sitemap.{SiteMap, Menu}
 import net.liftweb.sitemap.Loc._
 import net.liftweb.mapper.{DB,Schemifier,DefaultConnectionIdentifier,StandardDBVendor,MapperRules}
@@ -35,12 +36,14 @@ class Boot {
     if (Props.devMode)
     Schemifier.schemify(true, Schemifier.infoF _, User, Message, NewsListing)
 
+    val MustBeLoggedIn = If(() => User.loggedIn_?, "")
     // build sitemap
-    val entries = List(Menu("Home") / "index",
-                       Menu("News and Jobs") / "NewsJobs",
-                       Menu("Messages and People") / "MessagesPeople",
-                       Menu("Profile temp link") / "profile" / "profile" >> Hidden,
-                       Menu("Even or Job Listing") / "Listing" >> Hidden) :::
+    val entries = List(Menu("Home") / "index" >> LocGroup("public"),
+                       Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
+                       Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
+                       Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
+                       Menu("Even or Job Listing") / "Listing" >> LocGroup("public") >> Hidden,
+                       Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> LocGroup("admin") submenus(Message.menus : _*)) :::
                        User.menus
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){
