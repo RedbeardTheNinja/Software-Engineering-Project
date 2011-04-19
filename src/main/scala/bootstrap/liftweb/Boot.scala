@@ -52,7 +52,8 @@ class Boot {
       case (req,failure) => NotFoundAsTemplate(
         ParsePath(List("exceptions","404"),"html",false,false))
     })
-    
+
+
     LiftRules.setSiteMap(SiteMap(entries:_*))
     
     // set character encoding
