@@ -3,7 +3,6 @@ package code.model {
 import net.liftweb._
 import mapper._
 import sitemap.Loc.LocGroup
-import sitemap.Loc.LocGroup._
 import util._
 import common._
 
@@ -56,16 +55,21 @@ object User extends User with MetaMegaProtoUser[User] {
   </lift:surround>)
 
   // define the order fields will appear in forms and output
-  override def fieldOrder = userName :: firstName :: lastName :: email :: locale :: timezone :: password :: summary :: Nil
+  override def fieldOrder = List(userName, firstName, lastName, email, locale, timezone, password, summary)
 
-  override def signupFields = firstName :: lastName :: userName :: email :: password :: superUser :: Nil
+  override def signupFields =List(userName, firstName, lastName, email, password)
 
   override def editFields = firstName :: lastName :: password :: summary :: Nil
 
-
-  override def loginMenuLocParams = (if(superUser_?) { LocGroup("admin") } else { LocGroup("public") }) :: super.loginMenuLocParams
-
-  override def createUserMenuLocParams = (if(superUser_?) { LocGroup("admin") } else { LocGroup("public") }) :: super.createUserMenuLocParams
+  /*LOCATION CONTROL*/
+  override def loginMenuLocParams = LocGroup("public") :: super.loginMenuLocParams
+  override def lostPasswordMenuLocParams = LocGroup("public") :: super.lostPasswordMenuLocParams
+  override def editUserMenuLocParams = LocGroup("public") :: super.editUserMenuLocParams
+  override def resetPasswordMenuLocParams = LocGroup("public") :: super.resetPasswordMenuLocParams
+  override def changePasswordMenuLocParams = LocGroup("public") :: super.changePasswordMenuLocParams
+  override def logoutMenuLocParams = LocGroup("public") :: super.logoutMenuLocParams
+  override def createUserMenuLocParams = LocGroup("public") :: super.createUserMenuLocParams
+  /*END LOCATION CONTROL*/
 
   // comment this line out to require email validations
   override def skipEmailValidation = true

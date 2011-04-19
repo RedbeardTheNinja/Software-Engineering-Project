@@ -6,7 +6,7 @@ class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) {
   val scalatoolsRelease = "Scala Tools Snapshot" at
   "http://scala-tools.org/repo-releases/"
 
-  val liftVersion = "2.2"
+  val liftVersion = "2.3"
 
   override def libraryDependencies = Set(
     "net.liftweb" %% "lift-webkit" % liftVersion % "compile->default",

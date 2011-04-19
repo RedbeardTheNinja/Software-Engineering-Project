@@ -3,7 +3,7 @@
 
 package code.snippet
 
-import xml.{NodeSeq,Text}
+import xml.{NodeSeq}
 import net.liftweb._
 import common.Full
 import http.js.JsCmds.SetHtml

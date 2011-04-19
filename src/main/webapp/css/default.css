@@ -8,7 +8,9 @@
 	margin:0;
 	padding:0;
 	border-bottom:1px solid #ccc;
-}	 
+}
+
+/*SIDEBAR SECTION*/
 
 .sidebar ul li {
 	margin:0;
@@ -35,6 +37,8 @@
 .sidebar ul li a:hover {
 	background-color: #eee;
 }
+
+/*END SIDEBAR SECTION*/
 
 /*MENU SECTION*/
 

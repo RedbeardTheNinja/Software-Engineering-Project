@@ -61,11 +61,11 @@ class Message extends LongKeyedMapper[Message] with IdPK {
 object Message extends Message with LongKeyedMetaMapper[Message] with CRUDify[Long,Message] {
   override def dbTableName = "message"
   override def pageWrapper(body: NodeSeq) = {
-        <lift:surround with="default" at="content">{body}</lift:surround>
+        <lift:surround with="admin" at="content">{body}</lift:surround>
   }
   override def calcPrefix = List("admin",_dbTableNameLC)
-  override def showAllMenuLocParams = LocGroup("admin") :: Nil
-  override def createMenuLocParams = LocGroup("admin") :: Nil
+  override def showAllMenuLocParams = LocGroup("control") :: Nil
+  override def createMenuLocParams = LocGroup("control") :: Nil
   //override def fieldOrder = receiver :: subject :: body :: sender :: receiver_deleted :: sender_deleted :: sent_date :: is_read :: Nil
 
 

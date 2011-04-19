@@ -37,13 +37,15 @@ class Boot {
     Schemifier.schemify(true, Schemifier.infoF _, User, Message, NewsListing)
 
     val MustBeLoggedIn = If(() => User.loggedIn_?, "")
+    val MustBeAdmin = If(() => User.superUser_?, "")
     // build sitemap
     val entries = List(Menu("Home") / "index" >> LocGroup("public"),
                        Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
                        Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
                        Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
                        Menu("Even or Job Listing") / "Listing" >> LocGroup("public") >> Hidden,
-                       Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> LocGroup("admin") submenus(Message.menus : _*)) :::
+                       Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> MustBeAdmin >> LocGroup("public"),
+                       Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus(Message.menus : _*)) :::
                        User.menus
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){
