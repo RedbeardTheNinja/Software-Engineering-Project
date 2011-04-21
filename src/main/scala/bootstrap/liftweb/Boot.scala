@@ -10,7 +10,7 @@ import net.liftweb.sitemap.Loc._
 import net.liftweb.mapper.{DB,Schemifier,DefaultConnectionIdentifier,StandardDBVendor,MapperRules}
 import util.{Props, NamedPF}
 import widgets.autocomplete.AutoComplete
-import code.model.{NewsListing, Message, User}
+import code.model.{Listing, Message, User}
 
 class Boot {
   def boot {
@@ -34,7 +34,7 @@ class Boot {
     }
 
     if (Props.devMode)
-    Schemifier.schemify(true, Schemifier.infoF _, User, Message, NewsListing)
+    Schemifier.schemify(true, Schemifier.infoF _, User, Message, Listing)
 
     val MustBeLoggedIn = If(() => User.loggedIn_?, "")
     val MustBeAdmin = If(() => User.superUser_?, "")
@@ -43,9 +43,10 @@ class Boot {
                        Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
                        Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
                        Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
-                       Menu("Even or Job Listing") / "Listing" >> LocGroup("public") >> Hidden,
+                       Menu("Event or Job Listing") / "Listing" >> LocGroup("public") >> Hidden,
                        Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> MustBeAdmin >> LocGroup("public"),
-                       Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus(Message.menus : _*)) :::
+                       Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus(Message.menus : _*),
+                       Menu("Listing Control") / "admin" / "Listing" >> MustBeLoggedIn >> LocGroup("control") submenus(Listing.menus : _*)) :::
                        User.menus
     
     LiftRules.uriNotFound.prepend(NamedPF("404handler"){

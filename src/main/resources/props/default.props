@@ -1,0 +1,4 @@
+db.class=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://localhost:3306/software_engineering
+db.user=lift
+db.pass=kos-mos

@@ -1,7 +1,3 @@
-
-
-
-
 package code.model
 
 import net.liftweb._
@@ -20,15 +16,32 @@ class Message extends LongKeyedMapper[Message] with IdPK {
   object sent_date extends MappedDate(this) {
     override def dbIncludeInForm_? = false
   }
+
   object body extends MappedTextarea(this, 2048) {
-    override def textareaRows  = 5
+    override def textareaRows = 5
+
     override def textareaCols = 20
+
     override def displayName = "Body"
   }
-  object subject extends MappedString(this,100)
+
+  object subject extends MappedString(this, 100)
+
   object sender extends LongMappedMapper(this, User) {
     override def dbIncludeInForm_? = false
+
+    override def asHtml = {
+      <span>
+        {User.find(By(User.id, this)).map(u => (u.firstName + " " + u.lastName)).openOr(Text("PM"))}
+      </span>
+    }
+
+    override def _toForm = {
+
+      Full(SHtml.text("", (s: String) => this.set(User.find(By(User.userName, s)).open_!.id.is)))
+    }
   }
+
   object receiver extends LongMappedMapper(this, User) {
 
     override def asHtml = {
@@ -38,34 +51,47 @@ class Message extends LongKeyedMapper[Message] with IdPK {
     }
 
     override def _toForm = {
-      
-      Full(SHtml.text("",(s : String) => this.set(User.find(By(User.userName,s)).open_!.id.is)))
+
+      Full(SHtml.text("", (s: String) => this.set(User.find(By(User.userName, s)).open_!.id.is)))
     }
 
   }
+
   object sender_deleted extends MappedBoolean(this) {
     override def defaultValue = false
+
     override def dbIncludeInForm_? = false
   }
+
   object receiver_deleted extends MappedBoolean(this) {
-      override def dbIncludeInForm_? = false
-      override def defaultValue = false
+    override def dbIncludeInForm_? = false
+
+    override def defaultValue = false
   }
+
   object is_read extends MappedBoolean(this) {
-      override def dbIncludeInForm_? = false
-      override def defaultValue = false
+    override def dbIncludeInForm_? = false
+
+    override def defaultValue = false
   }
 
 }
 
-object Message extends Message with LongKeyedMetaMapper[Message] with CRUDify[Long,Message] {
+object Message extends Message with LongKeyedMetaMapper[Message] with CRUDify[Long, Message] {
   override def dbTableName = "message"
+
   override def pageWrapper(body: NodeSeq) = {
-        <lift:surround with="admin" at="content">{body}</lift:surround>
+    <lift:surround with="admin" at="content">
+      {body}
+    </lift:surround>
   }
-  override def calcPrefix = List("admin",_dbTableNameLC)
+
+  override def calcPrefix = List("admin", _dbTableNameLC)
+
   override def showAllMenuLocParams = LocGroup("control") :: Nil
+
   override def createMenuLocParams = LocGroup("control") :: Nil
+
   //override def fieldOrder = receiver :: subject :: body :: sender :: receiver_deleted :: sender_deleted :: sent_date :: is_read :: Nil
 
 
