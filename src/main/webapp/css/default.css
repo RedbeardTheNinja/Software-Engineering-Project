@@ -3,11 +3,18 @@
   color: red;
 }
 
+body
+
+{
+	background-color: #CCCCCC;
+
+}
 
 .sidebar ul {
 	margin:0;
 	padding:0;
 	border-bottom:1px solid #ccc;
+
 }
 
 /*SIDEBAR SECTION*/
@@ -22,20 +29,20 @@
 
 .sidebar ul li a {
 	display:block;
-	padding:3px;
+	padding:0px;
 	text-indent:30px;
 	text-decoration:none;
 }
 
 .sidebar ul li span {
 	display:block;
-	padding:3px;
+	padding:0px;
 	text-indent:30px;
 	text-decoration:none;
 }
 
 .sidebar ul li a:hover {
-	background-color: #eee;
+	background-color: #ccc;
 }
 
 /*END SIDEBAR SECTION*/
@@ -43,30 +50,68 @@
 /*MENU SECTION*/
 
 .menu {
-	width: 100%;
-	height: 54px;
-	margin: 0px auto;
+	border-bottom : 1px solid #ccc;
+	padding-bottom : 19px;
+	font-family: sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	font-size: medium;
+	width:100%;
+	padding:0 0 1.75em 1em;
+	margin:0;
+	list-style:none;
+	line-height:1em;
+
+	word-spacing: normal;
+	letter-spacing: normal;
+	text-transform: capitalize;
+	text-align: left;
+
+
 }
 
 .menu ul {
-	margin: 0px;
-	padding: 12px 0px 0px 0px;
-	list-style: none;
-	text-align: center;
+	display : inline;
+	list-style-type : none;		
+	top:1.5em;
+	float:left;
+	background:#bbb;
+	width:100%;
+	margin:0;
+	padding:0.25em 0.25em 0.25em 1em;
+	list-style:none;
+	border-top:1px solid #fff;
+
+
 }
 
 .menu li {
-	display: inline;
-	padding: 0px;
-	background: none;
+	display : inline;
+	border: solid;
+	border-width: 1px 1px 0 1px;
+	padding-bottom : 2px;
+	padding-left : 10px;
+	padding-right: 2px;
+
+}
+
+.menu li a{
+    */Text in menu*/
+    text-decoration: none;
+    color:#3E3C3C;
+
 }
 
 .menu a {
-	padding: 0 18px 0px 18px;
+	padding: 0 0px 0px 0px;
+        text-decoration: none;
+
 }
 
 .menu ul li a:hover {
-	background-color: #eee;
+	color : #FFFFFF;
+
 }
 
 /*END MENU SECTION*/
@@ -76,6 +121,7 @@
 .tab {
     border:2px inset;
     border-radius:25px;
+    background-color: #6666FF;
 }
 
 .tab ul {
@@ -88,6 +134,7 @@
 .tab ul li {
     border:1px solid;
     border-radius:5px;
+    background-color: #9999FF;
 }
 
 /*END TAB SECTION*/
@@ -95,12 +142,17 @@
 /*MESSAGE CONTROL*/
 
 .messagecontrol {
-
+    background-color: #FFFFFF;
 }
 
 .messagecontrol td {
+	font-family: sans-serif;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
     border:1px solid #ccc;
     border-bottom:none;
+
 }
 
 .selected {
