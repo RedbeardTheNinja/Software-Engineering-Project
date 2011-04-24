@@ -52,6 +52,8 @@ class Listing extends LongKeyedMapper[Listing] with IdPK {
 
   object contact extends MappedString(this, 50)
 
+  object title extends MappedString(this, 50)
+
   object is_? extends MappedEnum(this, typeOfListing) {
     override def dbColumnName = "typeoflisting"
   }
