@@ -4,20 +4,20 @@
         $(document).ready(function(){
         $("#ToggleForm").click(function(){
         $("#ComposeForm").toggle("normal");
-        if($("ToggleForm").attr(value) == "Compose Message")
+        if($("#ToggleForm").attr(value) == "Compose Message")
         {
-        $("ToggleForm").attr(value,"Hide");
+        $("#ToggleForm").attr(value,"Hide");
         }
         else
         {
-        $("ToggleForm").attr(value,"Compose Message");
+        $("#ToggleForm").attr(value,"Compose Message");
         }
         });
         });
     </script>
 
     <form>
-        <input type="button" id="ToggleForm" value="Compose Message" style="position:relative;left:20px;"/>
+        <input type="button" id="ToggleForm" value="Compose Message" style="position:relative;left:40px;"/>
     </form>
 
     <form id="ComposeForm" style="display:none;">
@@ -26,8 +26,18 @@
         </lift:MessagesTab.ShowSend>
     </form>
 
+    <table class="messagecontrol">
+        <tr>
+            <td>
+                Inbox
+            </td>
+            <td>
+                Sent Mail
+            </td>
+        </tr>
+    </table>
     <ul>
-        <lift:MessagesTab.show>
+        <lift:MessagesTab.showReceived>
             <li>
                 <h6>The subject goes here</h6>
 
@@ -35,7 +45,7 @@
                     the message goes here
                 </p>
             </li>
-        </lift:MessagesTab.show>
+        </lift:MessagesTab.showReceived>
     </ul>
 
 </lift:surround>

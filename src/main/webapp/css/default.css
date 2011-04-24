@@ -74,9 +74,8 @@
 /*TAB SECTION*/
 
 .tab {
-    border:2px solid;
+    border:2px inset;
     border-radius:25px;
-    border-style:inset;
 }
 
 .tab ul {
