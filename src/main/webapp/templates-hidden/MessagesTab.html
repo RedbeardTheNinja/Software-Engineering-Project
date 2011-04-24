@@ -15,18 +15,26 @@
 
         $(document).ready(function() {
             $("#InboxButton").click(function() {
-                $("#Inbox").toggle("normal");
-                $("#Sent").toggle("normal");
-                $("#SentButton").removeClass("selected");
-                $("#InboxButton").addClass("selected");
+                if ($("#InboxButton").is(".notselected")) {
+                    $("#Inbox").toggle("normal");
+                    $("#Sent").toggle("normal");
+                    $("#InboxButton").removeClass("notselected");
+                    $("#SentButton").removeClass("selected");
+                    $("#SentButton").addClass("notselected");
+                    $("#InboxButton").addClass("selected");
+                }
             });
         });
         $(document).ready(function() {
             $("#SentButton").click(function() {
-                $("#Sent").toggle("normal");
-                $("#Inbox").toggle("normal");
-                $("#InboxButton").removeClass("selected");
-                $("#SentButton").addClass("selected");
+                if ($("#SentButton").is(".notselected")) {
+                    $("#Sent").toggle("normal");
+                    $("#Inbox").toggle("normal");
+                    $("#SentButton").removeClass("notselected");
+                    $("#InboxButton").removeClass("selected");
+                    $("#InboxButton").addClass("notselected");
+                    $("#SentButton").addClass("selected");
+                }
             });
         });
     </script>
@@ -46,7 +54,7 @@
             <td id="InboxButton" class="selected">
                 Inbox
             </td>
-            <td id="SentButton">
+            <td id="SentButton" class="notselected">
                 Sent Mail
             </td>
         </tr>
