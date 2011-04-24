@@ -1,18 +1,33 @@
 <lift:surround with="Tab" at="content">
 
     <script type="text/javascript">
-        $(document).ready(function(){
-        $("#ToggleForm").click(function(){
-        $("#ComposeForm").toggle("normal");
-        if($("#ToggleForm").attr(value) == "Compose Message")
-        {
-        $("#ToggleForm").attr(value,"Hide");
-        }
-        else
-        {
-        $("#ToggleForm").attr(value,"Compose Message");
-        }
+        $(document).ready(function() {
+            $("#ToggleForm").click(function() {
+                $("#ComposeForm").toggle("normal");
+                if ($("#ToggleForm").getAttribute("value") == "Compose Message") {
+                    $("#ToggleForm").Attr("value", "Hide");
+                }
+                else {
+                    $("#ToggleForm").Attr("value", "Compose Message");
+                }
+            });
         });
+
+        $(document).ready(function() {
+            $("#InboxButton").click(function() {
+                $("#Inbox").toggle("normal");
+                $("#Sent").toggle("normal");
+                $("#SentButton").removeClass("selected");
+                $("#InboxButton").addClass("selected");
+            });
+        });
+        $(document).ready(function() {
+            $("#SentButton").click(function() {
+                $("#Sent").toggle("normal");
+                $("#Inbox").toggle("normal");
+                $("#InboxButton").removeClass("selected");
+                $("#SentButton").addClass("selected");
+            });
         });
     </script>
 
@@ -28,15 +43,15 @@
 
     <table class="messagecontrol">
         <tr>
-            <td>
+            <td id="InboxButton" class="selected">
                 Inbox
             </td>
-            <td>
+            <td id="SentButton">
                 Sent Mail
             </td>
         </tr>
     </table>
-    <ul>
+    <ul id="Inbox">
         <lift:MessagesTab.showReceived>
             <li>
                 <h6>The subject goes here</h6>
@@ -46,6 +61,18 @@
                 </p>
             </li>
         </lift:MessagesTab.showReceived>
+    </ul>
+
+    <ul id="Sent" style="display:none;">
+        <lift:MessagesTab.showSent>
+            <li>
+                <h6>The subject goes here</h6>
+
+                <p>
+                    the message goes here
+                </p>
+            </li>
+        </lift:MessagesTab.showSent>
     </ul>
 
 </lift:surround>

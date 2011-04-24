@@ -91,3 +91,20 @@
 }
 
 /*END TAB SECTION*/
+
+/*MESSAGE CONTROL*/
+
+.messagecontrol {
+
+}
+
+.messagecontrol td {
+    border:1px solid #ccc;
+    border-bottom:none;
+}
+
+.selected {
+    background:#ccc;
+}
+
+/*END MESSAGE CONTROL*/
