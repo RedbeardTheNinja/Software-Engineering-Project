@@ -10,9 +10,15 @@ package code.snippet
 
 import xml.{NodeSeq}
 import net.liftweb._
+import http.S
+import mapper.By
 import util.Helpers._
+import code.model.User
 
 class Profile {
-  def show = render
-	def render = "*" #> <strong>this is the profile page</strong>
+	def render = {
+    val person = User.find(By(User.id, S.param("id").open_!.toLong)).open_!
+    "#name *" #> (person.firstName + " " + person.lastName) &
+      "#summary *" #> person.summary
+  }
 }
