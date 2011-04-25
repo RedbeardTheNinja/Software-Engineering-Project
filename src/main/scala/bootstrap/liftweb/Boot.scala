@@ -1,5 +1,3 @@
-
-
 package bootstrap.liftweb
 
 import net.liftweb._

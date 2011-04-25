@@ -1,7 +1,3 @@
-
-
-
-
 package code.model
 
 import net.liftweb._

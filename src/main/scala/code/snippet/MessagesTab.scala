@@ -1,6 +1,3 @@
-
-
-
 package code.snippet
 
 import xml.{NodeSeq}
