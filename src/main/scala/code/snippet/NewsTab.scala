@@ -12,6 +12,10 @@ import code.model.{Message, Listing}
 class NewsTab {
 	def render = {
     val newsList = Listing.findAll(By(Listing.is_?, Listing.typeOfListing.News))
-    "li *" #> newsList.map((l : Listing) => "h6 *" #> l.title & "#contact *" #> l.contact & "#dateTime *" #> l.when_? & "#summary *" #> l.details & "#poster *" #> l.poster)
+    "li *" #> newsList.map((l : Listing) => "h6 *" #> <a href={"/Listing?id=" + l.id}>{l.title}</a> &
+                                            "#contact *" #> l.contact &
+                                            "#dateTime *" #> l.when_? &
+                                            "#summary *" #> l.details &
+                                            "#poster *" #> l.poster)
   }
 }
