@@ -43,6 +43,7 @@ class User extends MegaProtoUser[User] with OneToMany[Long, User] {
 
 }
 
+
 /**
  * The singleton that has methods for accessing the database
  */

@@ -9,7 +9,7 @@ import sitemap.{Loc, SiteMap, Menu}
 import util.{Props, NamedPF}
 import widgets.autocomplete.AutoComplete
 import code.model.{Listing, Message, User}
-import code.snippet.ListingTitle
+import code.snippet.{profileName, ListingTitle}
 
 class Boot {
   def boot {
@@ -39,6 +39,10 @@ class Boot {
                                                s => Full(ListingTitle(s)),
                                                (details : ListingTitle) => details.title) / "Listing"
 
+    val profileMenu = Menu.param[profileName]("Profile", "Profile",
+                                               s => Full(profileName(s)),
+                                               (details : profileName) => details.username) / "Profile"
+
     val MustBeLoggedIn = If(() => User.loggedIn_?, "")
     val MustBeAdmin = If(() => User.superUser_?, "")
     // build sitemap
@@ -46,7 +50,8 @@ class Boot {
       Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
       Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
       Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
-      listingMenu.toMenu,//>> LocGroup("public") >> MustBeLoggedIn >> Hidden,
+      listingMenu.toMenu,
+      profileMenu.toMenu,
       Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> MustBeAdmin >> LocGroup("public"),
       Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus (Message.menus: _*),
       Menu("Listing Control") / "admin" / "Listing" >> MustBeLoggedIn >> LocGroup("control") submenus (Listing.menus: _*)) :::
