@@ -23,6 +23,11 @@ class ProfileDetails(pN : profileName) {
     val person = User.find(By(User.userName, pN.username)).open_!
     "#name *" #> (person.firstName + " " + person.lastName) &
     "#summary *" #> person.summary &
-    "#uid *" #> person.id
+    "#uid *" #> person.id &
+    "#email *" #> person.email &
+    "#time *" #> person.timezone &
+    "#status *" #> person.currentStatus
+
+
   }
 }
