@@ -19,6 +19,7 @@ class Profile {
 	def render = {
     val person = User.find(By(User.id, S.param("id").open_!.toLong)).open_!
     "#name *" #> (person.firstName + " " + person.lastName) &
-      "#summary *" #> person.summary
+    "#summary *" #> person.summary &
+    "#uid *" #> person.id
   }
 }
