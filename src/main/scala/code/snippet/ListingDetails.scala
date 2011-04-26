@@ -10,10 +10,12 @@ import mapper.By
 import util.Helpers._
 import code.model.Listing
 
-class ListingDetails {
-	def render = {
-    val listing = Listing.find(By(Listing.id, S.param("id").open_!.toLong)).open_!
-    "#title *" #> listing.title &
+case class ListingTitle(title : String)
+
+class ListingDetails(details : ListingTitle) {
+	def showListing = {
+    val listing = Listing.find(By(Listing.title, details.title)).open_!
+      "#title *" #> listing.title &
       "#contact *" #> listing.contact &
       "#dateTime *" #> listing.when_? &
       "#summary *" #> listing.details &

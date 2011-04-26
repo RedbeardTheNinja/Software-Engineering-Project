@@ -13,7 +13,7 @@ class JobsTab {
 	def render = {
     val jobList = Listing.findAll(By(Listing.is_?, Listing.typeOfListing.Job))
 
-    "li *" #> jobList.map((l : Listing) => "h6 *" #> <a href={"/Listing?id=" + l.id}>{l.title}</a>&
+    "li *" #> jobList.map((l : Listing) => "h6 *" #> <a href={"/Listing/" + l.title}>{l.title}</a>&
                                            "#contact *" #> l.contact &
                                            "p *" #> l.details &
                                            "#poster *" #> l.poster)

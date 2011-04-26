@@ -1,14 +1,15 @@
 package bootstrap.liftweb
 
 import net.liftweb._
+import common.Full
 import http.{LiftRules, NotFoundAsTemplate, ParsePath}
-import sitemap.Menu.Menuable._
-import sitemap.{SiteMap, Menu}
 import net.liftweb.sitemap.Loc._
-import net.liftweb.mapper.{DB,Schemifier,DefaultConnectionIdentifier,StandardDBVendor,MapperRules}
+import net.liftweb.mapper.{DB, Schemifier, DefaultConnectionIdentifier, StandardDBVendor}
+import sitemap.{Loc, SiteMap, Menu}
 import util.{Props, NamedPF}
 import widgets.autocomplete.AutoComplete
 import code.model.{Listing, Message, User}
+import code.snippet.ListingTitle
 
 class Boot {
   def boot {
@@ -32,32 +33,35 @@ class Boot {
     }
 
     if (Props.devMode)
-    Schemifier.schemify(true, Schemifier.infoF _, User, Message, Listing)
+      Schemifier.schemify(true, Schemifier.infoF _, User, Message, Listing)
+
+    val listingMenu = Menu.param[ListingTitle]("Details", "Details",
+                                               s => Full(ListingTitle(s)),
+                                               (details : ListingTitle) => details.title) / "Listing"
 
     val MustBeLoggedIn = If(() => User.loggedIn_?, "")
     val MustBeAdmin = If(() => User.superUser_?, "")
     // build sitemap
     val entries = List(Menu("Home") / "index" >> LocGroup("public"),
-                       Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
-                       Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
-                       Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
-                       Menu("Event or Job Listing") / "Listing" >> LocGroup("public") >> Hidden,
-                       Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> MustBeAdmin >> LocGroup("public"),
-                       Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus(Message.menus : _*),
-                       Menu("Listing Control") / "admin" / "Listing" >> MustBeLoggedIn >> LocGroup("control") submenus(Listing.menus : _*)) :::
-                       User.menus
-    
-    LiftRules.uriNotFound.prepend(NamedPF("404handler"){
-      case (req,failure) => NotFoundAsTemplate(
-        ParsePath(List("exceptions","404"),"html",false,false))
+      Menu("News and Jobs") / "NewsJobs" >> LocGroup("public") >> MustBeLoggedIn,
+      Menu("Messages and People") / "MessagesPeople" >> LocGroup("public") >> MustBeLoggedIn,
+      Menu("Profile temp link") / "profile" / "profile" >> LocGroup("public") >> Hidden,
+      listingMenu.toMenu,//>> LocGroup("public") >> MustBeLoggedIn >> Hidden,
+      Menu("Admin") / "admin" / "index" >> MustBeLoggedIn >> MustBeAdmin >> LocGroup("public"),
+      Menu("Message Control") / "admin" / "Message" >> MustBeLoggedIn >> LocGroup("control") submenus (Message.menus: _*),
+      Menu("Listing Control") / "admin" / "Listing" >> MustBeLoggedIn >> LocGroup("control") submenus (Listing.menus: _*)) :::
+      User.menus
+
+    LiftRules.uriNotFound.prepend(NamedPF("404handler") {
+      case (req, failure) => NotFoundAsTemplate(
+        ParsePath(List("exceptions", "404"), "html", false, false))
     })
 
+    LiftRules.setSiteMap(SiteMap(entries: _*))
 
-    LiftRules.setSiteMap(SiteMap(entries:_*))
-    
     // set character encoding
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
-    
-    
+
+
   }
 }
