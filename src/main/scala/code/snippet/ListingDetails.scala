@@ -16,7 +16,7 @@ class ListingDetails {
     "#title *" #> listing.title &
       "#contact *" #> listing.contact &
       "#dateTime *" #> listing.when_? &
-      "#details *" #> listing.details &
+      "#summary *" #> listing.details &
       "#poster *" #> listing.poster
   }
 }
